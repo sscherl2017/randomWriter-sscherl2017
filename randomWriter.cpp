@@ -22,7 +22,7 @@ string getFileName()
 	string fileName;
 	cout << "Please write the name of the file you would like to read from (\"tenderButtons.txt\", \"motorMattsEngagement.txt\", or \"warAndPeace.txt\"): ";
 	cin >> fileName;
-	if (fileName != "tenderButtons.txt" && fileName != "motorMattsEngagement.txt" && fileName != "warAndPeace.txt")
+	while (fileName != "tenderButtons.txt" && fileName != "motorMattsEngagement.txt" && fileName != "warAndPeace.txt")
 	{
 		cout << "Invalid file name. Please input a valid file: ";
 		cin >> fileName;
