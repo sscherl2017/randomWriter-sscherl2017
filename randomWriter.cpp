@@ -15,6 +15,45 @@
 using namespace std;
 
 /*
+* Gets the name of the file from the user.
+*/
+string getFileName()
+{
+	string fileName;
+	cout << "Please write the name of the file you would like to read from (\"tenderButtons.txt\", \"motorMattsEngagement.txt\", or \"warAndPeace.txt\"): ";
+	cin >> fileName;
+	if (fileName != "tenderButtons.txt" && fileName != "motorMattsEngagement.txt" && fileName != "warAndPeace.txt")
+	{
+		cout << "Invalid file name. Please input a valid file: ";
+		cin >> fileName;
+	}
+	return fileName;
+}
+
+/*
+* Gets the length of the seed from the user.
+*/
+int getSeedLength()
+{
+	int seedLength;
+	cout << "Please input the length you would like the seed to be: ";
+	cin >> seedLength;
+	return seedLength;
+}
+
+/*
+* Gets the output length from the user.
+*/
+int getOutputLength()
+{
+	int outputLength;
+	cout << "Please input the length of the string you would like to be returned: ";
+	cin >> outputLength;
+	return outputLength;
+
+}
+
+/*
 * Replaces any "special" characters within a line with a space
 */
 string processLine(string line)
@@ -44,10 +83,10 @@ string processLine(string line)
 /*
 * Parses through the input text file and converts it into a String.
 */
-string read () {
+string read() {
     string line;
     string fullText;
-    ifstream myfile ("tenderButtons.txt");
+    ifstream myfile (getFileName());
     if (myfile.is_open())
     {
         while ( getline (myfile, line) )
@@ -60,15 +99,16 @@ string read () {
 
 /*
 * Iterates through the text, and chooses a character from the String of characters that follows
-* a given seed, appends that character to the ouput String, and shifts the seed over to include this new character.
+* a given seed, appends that character to the output String, and shifts the seed over to include this new chosen character. It repeats
+* this process until the output string is of the desired length.
 */
-int main () {
+int main() {
 	srand(time(0));
-	int seedLength = 5;
-	string outputText = "";
-	int outputLength = 200;
-	string possibleFollowing;
 	string fullText = read();
+	int seedLength = getSeedLength();
+	string outputText = "";
+	int outputLength = getOutputLength();
+	string possibleFollowing;
 	int startingPosition = rand() % (fullText.length() - outputLength);
 	string seed = fullText.substr(startingPosition, seedLength);
 	
